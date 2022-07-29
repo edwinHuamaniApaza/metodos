@@ -52,6 +52,32 @@ class ProductosController extends Controller
 
             
             }
+            public function patchUpdate(Request $request,$id)
+            {
+                $response=new \stdclass();
+                             
+                $producto=Producto::find($id);
+                
+                if ($request->codigo!=null) {
+                    $producto->codigo=$request->codigo;
+                }
+                
+                if ($request->nombre!=null) {
+                    $producto->nombre=$request->nombre;
+                }
+                
+                $producto->save();
+
+                $response->success=true;
+                $response->data=$producto;
+
+                return response()->json($response,200);
+
+            
+            }
+
+
+
             public function delete($id)
             {
                 $response=new \stdclass();
@@ -82,3 +108,4 @@ class ProductosController extends Controller
 
             
             }
+        }
