@@ -52,4 +52,20 @@ class ProductosController extends Controller
 
             
             }
+            public function delete($id)
+            {
+                $response=new \stdclass();
+             
+                
+                $producto=Producto::find($id);
+                
+                $producto->delete();
+
+                $response->success=true;
+             
+
+                return response()->json($response,200);
+
+            
+            }
     }

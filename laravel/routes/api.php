@@ -28,5 +28,5 @@ Route::get('/v1/productos', [ProductosController::class, 'getproductos']);
 
 Route::post('/v1/productos', [ProductosController::class, 'store']);
 Route::put('/v1/productos/{id}', [ProductosController::class, 'update']);
-//Route::get('/v1/clientes/{id}', [ClientesController::class, 'getclientes']);
+Route::delete('/v1/productos/{id}', [ProductosController::class, 'delete']);
 
