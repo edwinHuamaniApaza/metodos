@@ -68,4 +68,17 @@ class ProductosController extends Controller
 
             
             }
-    }
+              public function getitem($id)
+            {
+                $response=new \stdclass();
+             
+                
+                $producto=Producto::find($id);
+                
+                $response->success=true;
+                $response->data=$producto;
+             
+                return response()->json($response,200);
+
+            
+            }
