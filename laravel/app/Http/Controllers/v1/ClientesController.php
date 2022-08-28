@@ -2,38 +2,33 @@
  
 namespace App\Http\Controllers\v1;
 use Illuminate\Http\Request;
-use App\Models\Producto;
+use App\Models\Cliente;
 use App\Http\Controllers\Controller;
 
 
  
-class ProductosController extends Controller
+class ClientesController extends Controller
     {
         
-        public function getproductos()
+        public function getclientes()
         {
 
             $response=new \stdclass();
             $response->suscess=true;
-            $response->data=Producto::all();
+            $response->data=Cliente::all();
             return response()->json($response,200);
         }
         public function store(Request $request)
             {
                 $response=new \stdclass();
-                $producto=new producto();
-                $producto->codigo=$request->codigo;
-                $producto->nombre=$request->nombre;
-                $producto->stock=$request->stock;
-                $producto->precio=$request->precio;
-
-
-
-
-                $producto->save();
+                $cliente=new cliente();
+                $cliente->codigo=$request->codigo;
+                $cliente->nombre=$request->nombre;
+                $cliente->email=$request->email;
+                $cliente->save();
 
                 $response->success=true;
-                $response->data=$producto;
+                $response->data=$cliente;
 
                 return response()->json($response,200);
 
@@ -44,19 +39,16 @@ class ProductosController extends Controller
                 $response=new \stdclass();
              
                 
-                $producto=Producto::find($id);
+                $cliente=Cliente::find($id);
                 
-                $producto->codigo=$request->codigo;
-                $producto->nombre=$request->nombre;
-                $producto->stock=$request->stock;
-                $producto->precio=$request->precio;
-
-
-
-                $producto->save();
+                $cliente->codigo=$request->codigo;
+                $cliente->nombre=$request->nombre;
+                $cliente->email=$request->email;
+                
+                $cliente->save();
 
                 $response->success=true;
-                $response->data=$producto;
+                $response->data=$cliente;
 
                 return response()->json($response,200);
 
@@ -66,33 +58,28 @@ class ProductosController extends Controller
             {
                 $response=new \stdclass();
                              
-                $producto=Producto::find($id);
+                $cliente=Ciente::find($id);
                 
                 if ($request->codigo!=null) {
-                    $producto->codigo=$request->codigo;
+                    $cliente->codigo=$request->codigo;
                 }
                 
                 if ($request->nombre!=null) {
-                    $producto->nombre=$request->nombre;
+                    $cliente->nombre=$request->nombre;
                 }
+                  
+               if ($request->email!=null) {
+                   $cliente->email=$request->email;
+               }
+                 
                 
-                if ($request->stock!=null) {
-                    $producto->stock=$request->stock;
-                }
-                
-                if ($request->precio!=null) {
-                    $producto->precio=$request->precio;
-                }
 
 
 
-
-
-
-                $producto->save();
+                $cliente->save();
 
                 $response->success=true;
-                $response->data=$producto;
+                $response->data=$cliente;
 
                 return response()->json($response,200);
 
@@ -106,9 +93,9 @@ class ProductosController extends Controller
                 $response=new \stdclass();
              
                 
-                $producto=Producto::find($id);
+                $cliente=Cliente::find($id);
                 
-                $producto->delete();
+                $cliente->delete();
 
                 $response->success=true;
              
@@ -122,10 +109,10 @@ class ProductosController extends Controller
                 $response=new \stdclass();
              
                 
-                $producto=Producto::find($id);
+                $cliente=Cliente::find($id);
                 
                 $response->success=true;
-                $response->data=$producto;
+                $response->data=$cliente;
              
                 return response()->json($response,200);
 
