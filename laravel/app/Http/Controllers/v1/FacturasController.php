@@ -2,38 +2,38 @@
  
 namespace App\Http\Controllers\v1;
 use Illuminate\Http\Request;
-use App\Models\Pedido;
+use App\Models\Factura;
 use App\Http\Controllers\Controller;
 
 
  
-class PedidosController extends Controller
+class FacturasController extends Controller
     {
         
-        public function getPedidos()
+        public function getFacturas()
         {
 
             $response=new \stdclass();
             $response->suscess=true;
-            $response->data=Pedido::all();
+            $response->data=Factura::all();
             return response()->json($response,200);
         }
         public function store(Request $request)
             {
                 $response=new \stdclass();
-                $pedido=new pedido();
-                $pedido->cliente=$request->cliente;
-                $pedido->orden=$request->orden;
-                $pedido->estatus=$request->estatus;
-                $pedido->precio=$request->precio;
-                $pedido->fecha=$request->fecha;
+                $factura=new factura();
+                $factura->fecha_creacion=$request->fecha_creacion;
+                $factura->estado=$request->estado;
+                $factura->fecha_pago=$request->fecha_pago;
+                $factura->metodo=$request->metodo;
+                $factura->monto=$request->monto;
               
 
 
-                $pedido->save();
+                $factura->save();
 
                 $response->success=true;
-                $response->data=$pedido;
+                $response->data=$factura;
 
                 return response()->json($response,200);
 
@@ -44,19 +44,19 @@ class PedidosController extends Controller
                 $response=new \stdclass();
              
                 
-                $pedido=Pedido::find($id);
+                $factura=Pedido::find($id);
                 
                               
-                $pedido->cliente=$request->cliente;
-                $pedido->orden=$request->orden;
-                $pedido->estatus=$request->estatus;
-                $pedido->precio=$request->precio;
-                $pedido->fecha=$request->fecha;   
+                $factura->fecha_creacion=$request->fecha_creacion;
+                $factura->estado=$request->estado;
+                $factura->fecha_pago=$request->fecha_pago;
+                $factura->metodo=$request->metodo;
+                $factura->monto=$request->monto; 
 
-                $pedido->save();
+                $factura->save();
 
                 $response->success=true;
-                $response->data=$pedido;
+                $response->data=$factura;
 
                 return response()->json($response,200);
 
@@ -66,27 +66,27 @@ class PedidosController extends Controller
             {
                 $response=new \stdclass();
                              
-                $pedido=Pedido::find($id);
+                $factura=Factura::find($id);
 
                 
-                if ($request->cliente!=null) {
-                    $pedido->cliente=$request->cliente;
+                if ($request->fecha_creacion!=null) {
+                    $factura->fecha_creacion=$request->fecha_creacion;
                 }
                 
-                if ($request->orden!=null) {
-                     $pedido->orden=$request->orden;
+                if ($request->estado!=null) {
+                     $factura->estado=$request->estado;
                 }
                   
-               if ($request->estatus!=null) {
-                   $pedido->estatus=$request->estatus;
+               if ($request->fecha_pago!=null) {
+                   $factura->fecha_pago=$request->fecha_pago;
                }
                  
-                if ($request->precio!=null) {
-                    $pedido->precio=$request->precio;
+                if ($request->metodo!=null) {
+                    $factura->metodo=$request->metodo;
                 }
                 
-                if ($request->fecha!=null) {
-                    $pedido->fecha=$request->fecha;
+                if ($request->monto!=null) {
+                    $factura->monto=$request->monto;
                 }
                   
              
@@ -94,10 +94,10 @@ class PedidosController extends Controller
 
 
 
-                $pedido->save();
+                $factura->save();
 
                 $response->success=true;
-                $response->data=$pedido;
+                $response->data=$factura;
 
                 return response()->json($response,200);
 
@@ -111,9 +111,9 @@ class PedidosController extends Controller
                 $response=new \stdclass();
              
                 
-                $pedido=Pedido::find($id);
+                $factura=Factura::find($id);
                 
-                $pedido->delete();
+                $factura->delete();
 
                 $response->success=true;
              
@@ -127,10 +127,10 @@ class PedidosController extends Controller
                 $response=new \stdclass();
              
                 
-                $pedido=Pedido::find($id);
+                $factura=Factura::find($id);
                 
                 $response->success=true;
-                $response->data=$pedido;
+                $response->data=$factura;
              
                 return response()->json($response,200);
 
